@@ -1,6 +1,8 @@
+import "regenerator-runtime";
 import "./styles/bootstrap.css";
 import "./styles/navbar.css";
 import "./styles/custom.css";
-import navbarscroll from "./script/navbarscroll";
+import main from "./script/main";
 
-navbarscroll();
+main();
+
