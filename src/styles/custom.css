@@ -68,6 +68,50 @@ html {
 	margin-bottom: 250px;
 }
 
+.nav-center{
+	align-items: center;
+	border: none;
+	border-radius: 40px;
+	display: flex;
+	width: 50%;
+	height: 40px;
+	background-color: #E5E5E5;
+	padding-left: 15px;
+}
+
+.nav-center input{
+	border: none;
+	border-radius: 40px;
+	width: 100%;
+	height: 35px;
+	font-size: 15px;
+	font-weight: bold;
+	color: black;
+	padding-left: 20px;
+	background: none;
+}
+
+.btn-search{
+	height: 40px;
+	width: 60px;
+	border-radius: 0 40px 40px 0;
+	background-color: black;
+}
+
+.btn-search:hover{
+	background-color: #53019f;
+	cursor: pointer;
+}
+
+.btn-search img{
+	height: 30px;
+	width: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
 .box-search{
 	position: absolute;
 	align-items: center;
