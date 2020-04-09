@@ -86,7 +86,7 @@ function main(){
 	// 	});
 	// });
 
-	$(document).ready(function(){
+	$("#btntrending").on("click", function(){
 		let ajaxResponse;
 		$.ajax({
 			url :'https://api.themoviedb.org/3/trending/all/day?',
