@@ -12,119 +12,135 @@ function main(){
 	});
 
 
-
-	// $(document).ready(function(){
-	// 	let ajaxResponse;
-	// 	$.ajax({
-	// 		url :'http://www.omdbapi.com',
-	// 		type : 'get',
-	// 		dataType: 'json',
-	// 		data: {
-	// 			'apikey': 'f9b91bfc',
-	// 			's' : 'harry'
-	// 		},
-	// 		success: function(list) {
-	// 			if (list.Response == "True") {
-	// 				ajaxResponse=list.Search;
-	// 				console.log(ajaxResponse);
-					
-	// 				$.each(ajaxResponse, function(i,item){
-	// 					$('#listMovie').append(`
-	// 						<div class="md-col-4 mb-4" style="padding-right: 10px;">
-	// 						<div class="card" style="width: 18rem;">
-	// 					  		<img src="` + item.Poster + `" class="card-img-top" alt="...">
-	// 						  	<div class="card-body">
-	// 							    <h5 class="card-title">`+ item.Title  +`</h5>
-	// 							    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	// 							    <a href="#" class="btn btn-primary">Go somewhere</a>
-	// 					  		</div>
-	// 						</div>`);
-	// 				});
-						
-					
-	// 			}else{
-	// 				$('listMovie').html('<h1 class="text-center">'+ list.Error +'</h1>')
-	// 			}
-	// 		}
-	// 	});
-	// });
-
-	// 	$(document).ready(function(){
-	// 	let ajaxResponse;
-	// 	$.ajax({
-	// 		url :'http://api.alquran.cloud/v1/quran/quran-uthmani',
-	// 		type : 'get',
-	// 		dataType: 'json',
-			
-	// 		success: function(list) {
-	// 			if (list.status == "OK") {
-	// 				ajaxResponse=list;
-	// 				console.log(ajaxResponse);
-	// 				 var surahs0=ajaxResponse.data.surahs[0];
-	// 				 console.log(surahs0);
-	// 				for(i=0; i < surahs0.length; i++){
-	// 					var surah=surahs0[i];
-	// 					$('#listMovie').append(`
-	// 						<div class="md-col-4 mb-4" style="padding-right: 10px;">
-	// 						<div class="card" style="width: 18rem;">
-	// 					  		<img src="" class="card-img-top" alt="...">
-	// 						  	<div class="card-body">
-	// 							    <h5 class="card-title">`+ surah.number  +`</h5>
-	// 							    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	// 							    <a href="#" class="btn btn-primary">Go somewhere</a>
-	// 					  		</div>
-	// 						</div>`);
-	// 				}
-				
-					
-						
-					
-	// 			}else{
-	// 				$('#listMovie').html('<h1 class="text-center">'+ list.Error +'</h1>')
-	// 			}
-	// 		}
-	// 	});
-	// });
-
-	$("#btntrending").on("click", function(){
+	$(document).ready(function(){
 		let ajaxResponse;
-		$.ajax({
-			url :'https://api.themoviedb.org/3/trending/all/day?',
-			type : 'get',
-			dataType: 'json',
-			data: {
-				'api_key': 'a86239bbc54069065ee3fa0be9e43e65'
-			},
-			success: function(list) {
-				if (list.Response = "True") {
-					ajaxResponse=list.results;
-					console.log(ajaxResponse);
-					
-					$.each(ajaxResponse, function(i,item){
-						$('#listMovie').append(`
-							<div class="md-col-3 mb-4" style="padding-right: 10px;">
-							<div class="card" style="width: 18rem;">
-						  		<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/` + item.poster_path + `" class="card-img-top" alt="...">
-							  	<div class="card-body">
-								    <h5 class="card-title">`+ item.title  +`</h5>
-									<p class="card-text">`+ item.release_date +`</p>
-									<p class="card-text">`+ item.vote_average +`</p>
-								    <a href="#" class="btn btn-primary">Detail</a>
-						  		</div>
+		$(".button").click(function(){
+			$("#main").html('');
+			$(this).addClass("active");
+			$.ajax({
+				url :'https://api.themoviedb.org/3/trending/all/day?',
+				type : 'get',
+				dataType: 'json',
+				data: {
+					'api_key': 'a86239bbc54069065ee3fa0be9e43e65'
+				},
+				success: function(list) {
+					if (list.Response = "True") {
+						setTimeout(() => {
+							$(".button").removeClass("active");
+							ajaxResponse=list.results;
+							console.log(ajaxResponse);
+							$('#main').append(`<div  class="container mb-4" id="content">			
 							</div>`);
-					});
-						
-					
-				}else{
-					$('listMovie').html('<h1 class="text-center">'+ list.Error +'</h1>')
+							$('#content').append(`<h4>Trending Movie</h4>
+							<div id="listMovie" class="row justify-content-center mt-4">
+								<div class="loader"></div>
+							</div>`);
+							$.each(ajaxResponse, function(i,item){
+								$('#listMovie').append(`	
+									<div class="md-col-3 mb-4" style="padding-right: 10px;">
+										<div class="card" style="width: 14rem;">
+											<img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/` + item.poster_path + `" class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">`+item.title+`</h5>
+												<p class="card-text" style="margin-bottom:0;">`+ $.datepicker.formatDate("yy", new Date(item.release_date)) +`</p>
+												<p class="card-text">Rating : `+ item.vote_average +`</p>
+												<a href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="border-radius: 1.25rem;
+												width: 100%;" >Overview</a>
+											</div>
+										</div>
+									</div>`
+								);
+							});
+						}, 1500);
+					}
 				}
+			});
+		});
+
+
+		$("#search").on('keyup', function(e){
+			if (e.keyCode === 13) {
+				$('#main').html('');
+				$.ajax({
+					url :'https://api.themoviedb.org/3/search/movie?',
+					type : 'get',
+					dataType: 'json',
+					data: {
+						'api_key': 'a86239bbc54069065ee3fa0be9e43e65',
+						'query' : $('#search').val()
+					},
+					success: function(list) {
+						let searchMovie;
+						if (list.Response = "True") {
+							searchMovie=list.results;
+							console.log(searchMovie);
+							$('#main').append(`<div  class="container mb-4" id="content">			
+							</div>`);
+							$('#content').append(`<h4>Search Results For : `+ $('#search').val() +`</h4>
+							<div id="listMovie" class="row justify-content-center mt-4">
+								<div class="loader"></div>
+							</div>`);
+
+							$.each(searchMovie, function(i,item){
+								$('#listMovie').append(`	
+								<div class="md-col-3 mb-4" style="padding-right: 10px;">
+								<div class="card" style="width: 14rem;">
+									  <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/` + item.poster_path + `" class="card-img-top" alt="...">
+									  <div class="card-body">
+										<h5 class="card-title">`+item.title+`</h5>
+										<p class="card-text">Release date :`+ $.datepicker.formatDate("D dd-M-yy", new Date(item.release_date)) +`</p>
+										<p class="card-text">Rating :`+ item.vote_average +`</p>
+										<a href="#" type="button" 
+										class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="border-radius: 1.25rem;
+										width: 100%;">Overview</a>
+									  </div>
+								</div>`);
+							});
+						}
+					}
+				});
 			}
 		});
 	});
-
-
-
 }
+
+
+class footerContent extends HTMLElement {
+	constructor(){
+		super();
+		this.shadowDOM =this.attachShadow({mode:"open"});
+	}
+
+	connectedCallback(){
+		this.render();
+	}
+
+	render(){
+		this.shadowDOM.innerHTML = `
+		<style>
+			* {
+				margin:0;
+				padding:0;
+				box-sizing: border-box;
+			}
+
+			:host{
+				color: black;
+				font-weight: 600;
+			}
+
+			p{
+				padding-top:15px;
+			}
+		</style>
+		
+		<p>copyright©2020 - agungp.dicoding</p>`;
+	}
+}
+
+customElements.define("footer-content", footerContent);
+
 
 export default main;
 

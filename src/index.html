@@ -3,7 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
-	<title>The Movie</title>
+	<title>Your Movie</title>
+	<link rel="icon" href="img/logo.png">
 </head>
 <body>
 	<header>
@@ -12,16 +13,13 @@
 				<img src="img/logo.png" alt="">
 			</div>
 			<div class="nav-center" id="searchfeature" style="display: none;" >
-				<input type="text" placeholder="Search Your Film Want">
-				<!-- <div class="btn-search">
-					<a href="#"><img src="img/search.png" ></a>
-				</div> -->
+				<input type="text" id="search" placeholder="Search Your Film Want">
 			</div>
 			<div class="nav-right">
 				<ul>
 					<li>
 						<a href='#'>
-							<i></i>ABOUT
+							<i></i>HOME
 						</a>
 					</li>
 				</ul>
@@ -32,40 +30,50 @@
 	<div class="hero">
 		<div class="hero-movie-pic">
 			<div class="hero-first">
-				<img src="img/cinema.png" width=60% alt="">
+				<img src="img/trending.png" width=80% alt="">
 			</div>
 		</div>
 		
 		<div class="hero-movie">
 			<div class="hero-second">		
-				<h1>GET MOVIES</h1>
-				<a href="#" id="btntrending" onclick="main();">
-					Get Trending Movies
+				<a href="#main" class="button">
+					Trending Movies
 				</a>
 			</div>
-		</div>
-
-		
+		</div>	
 	</div>
-	<main>
-		<!-- <div class="search-movie">
-			<h1>Find Movie</h1>
-			<input type="text" alt="" placeholder="search your movie">
-			<a href="#">Search</a>
-		</div> -->
-		<div  class="container mb-4" style="display: none;">
-			<h3>Trending Movie</h3>
-			<div id="listMovie" class="row justify-content-center mt-4"></div>	
-		</div>
-	</main>
+	<main id="main"></main>
 
 	<footer>
-		<div class="content-footer" style="display: none;">
-			<p>copyright©2020 - Submision Dicoding.Belajar Fundamental Front-End Web Development</p>
-		</div>
+		<footer-content></footer-content>
 	</footer>
+
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  ...
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  <button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+
+
 	
 	<script src="app.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> 
 </body>
 </html>
