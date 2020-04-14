@@ -30,9 +30,14 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+<<<<<<< HEAD
     "bootstrap": "^4.4.1",
     "jquery": "^3.5.0",
     "popper.js": "^1.16.1",
+=======
+    "jquery": "^3.5.0",
+    "jquery-ui": "^1.12.1",
+>>>>>>> 6fbb7032adc7de266497e1ed6a900f4c285f89d3
     "regenerator-runtime": "^0.13.5"
   }
 }

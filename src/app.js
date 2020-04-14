@@ -1,3 +1,5 @@
+import $ from "jquery";
+window.$ = $;
 import "regenerator-runtime";
 import "./styles/bootstrap.css";
 import "./styles/navbar.css";
