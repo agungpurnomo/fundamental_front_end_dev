@@ -45,7 +45,7 @@ function main(){
 												<h5 class="card-title">`+item.title+`</h5>
 												<p class="card-text" style="margin-bottom:0;">`+ $.datepicker.formatDate("yy", new Date(item.release_date)) +`</p>
 												<p class="card-text">Rating : `+ item.vote_average +`</p>
-												<a href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="border-radius: 1.25rem;
+												<a href="#" type="button" class="btn btn-primary" id="btn-detail" style="border-radius: 1.25rem;
 												width: 100%;" >Overview</a>
 											</div>
 										</div>
@@ -92,7 +92,7 @@ function main(){
 										<p class="card-text">Release date :`+ $.datepicker.formatDate("D dd-M-yy", new Date(item.release_date)) +`</p>
 										<p class="card-text">Rating :`+ item.vote_average +`</p>
 										<a href="#" type="button" 
-										class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="border-radius: 1.25rem;
+										class="btn btn-primary"  id="btn-detail" style="border-radius: 1.25rem;
 										width: 100%;">Overview</a>
 									  </div>
 								</div>`);
@@ -102,6 +102,11 @@ function main(){
 				});
 			}
 		});
+
+		$("#btn-detail").click(function(){
+			$("#myModal").modal();
+		 });
+
 	});
 }
 
@@ -138,6 +143,9 @@ class footerContent extends HTMLElement {
 		<p>copyright©2020 - agungp.dicoding</p>`;
 	}
 }
+
+
+
 
 customElements.define("footer-content", footerContent);
 
